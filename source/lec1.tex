@@ -1,0 +1,61 @@
+% lec1.tex 
+\chapter{General Theory of Ordinary Differential Equations}
+\section{Generalities And Physical Motivation}
+\lecture{1}{08:05 AM Sun, Sep 28 2025}{} 
+
+An n$^{th} $-order ordinary differential equation (ODE for short) 
+is a functional relationship having the form :
+\[
+F(t, x, x', \hdots , x^{(n)})  = 0
+\]
+The variable $t $ laying in the real interval $ I $ is commonly called the 
+independent variable, and the $x \in C^{n}(I, \RR ^{k} )$ is the dependent 
+variable. \\
+An equation such as the above, is 
+said to be in the implicit form. An ODE
+is said to be in explicit form if 
+it's written in the form: 
+\[
+x^{(n) } = 
+f(t, x, x', \hdots , x^{(n-1) }) 
+\]
+Unfortunately, there is not too much to say about 
+ODEs in the implicit form. Notice that such an equation 
+can be reduced to the explicit form above, when the implicit function 
+theorem applys.\\
+\underline{\emph{Radioactive Desintegration:}} \\ The law of radiocative desintegration
+have been formulated in \textbf{1902} by constating that the instantaneous 
+rate of desintegration of a given radiocative element is propotional to the
+number of atoms existings at the time considered, and doesnt 
+depend on any other external factors. we write: 
+\[
+  X'(t)  = - a x(t)  \quad \quad \quad \quad \quad \quad 
+  ( x(t) = x(0) e^{-at}   ) 
+\]
+where $x(t)$ is the number of non desintegrated atoms at time $t$, 
+the positive constant is called desintegration constant and is related to the 
+radiocative element and is experminetally determined.\\
+\underline{\emph{Mathematical Pendulum:}} \\ Consider a pendulum of length $l $ and denote by $\DD  (t)  $ the length of the 
+arc described by the free extrimity at time $t$. we have $s(t) = l x(t)   $ is
+the measure in the radian of the angle between the vertical axis and the pendulum. \\
+$\vec{P} = mg  $  is the force exercised upon the pendulum. Decomposing the force $\vec{P}  $ 
+on the tangential axis and the thread axis and considering that the component of $\vec{P}  $ is
+conunter-balanced by the resistance of the resistance of the thread, we obtain by
+Newtons second law:
+\[
+m l x'' = -mg \sin{(x) }
+\]
+thus we get: 
+\[
+x'' + \frac{g}{l} \sin{ (x) } = 0
+\]
+\underline{\emph{A Spatial Model in Ecology:}} 
+\[
+x' = \lm x (1 - x)  - x
+\]
+we have an infinite number of sites linked by immigration, all the sites are equally accessible
+$x(t)$ is the number of occupied sites and assume that the time is scalled 
+so that the rate at which the sites become vaccout equals $1$. \\
+$x^{'} $ is propotional to the product of the occupied sites and vaccout sites.
+
+% end of file
