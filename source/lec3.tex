@@ -1,0 +1,99 @@
+% lec3.tex 
+\lecture{3}{08:00 AM Sun, Oct 12 2025}{} 
+\begin{example}
+\[
+  \begin{cases}
+x'(t)  = \sin (x(t) )    \\
+x(0)  = 0
+  \end{cases}
+\]
+$\overline{B}(0, r)$ and $I_{a} = \left[ -a, a \right] $  where $a > 0$, for all $x,y \in   \RR  $,
+\[
+\left| \sin (x) - \sin (y)      \right|   \leq 
+\left| x-y \right|,
+\]
+for all $\dd  \in   (0, \al), \quad \al = \min (a, \frac{r}{1}) = \min (a, r)  $, the IVP 
+admits a unique solution defined on $I_{\dd } = \left[ -\dd , \dd  \right] $.
+\end{example}
+\subsection{Local existence and uniqueness by successive approximation method}
+Picard's successive approximation method consists in using the integral form of a solution to the IVP(IVP1)
+to construct a sequence of apprxomiation of the solution. we do as follows,
+\[
+\begin{cases}
+\FF_{0}(t)  = x_0\\
+\FF _{n+1}(t)  = x_0 + 
+\int_{t_0}^{t} f(s, \FF (n) (s) ) ds
+\end{cases}
+\]
+\begin{theorem}[]
+Suppose that $f $ is L-Lipschitzian with respect
+to $x $ in 
+$R $. Then the sequence $(\FF _{n}) _{n \in   \NN_0} $
+converges uniformally on the interval $(t_0 - \al, t_0 + \al)  $ 
+to the same $\ff  $ which is the unique solution to the IVP(IVP1).
+\end{theorem}
+\begin{corollary}[Gronwall's Inequality]
+  If $ g : [t_0, t_1]  \longrightarrow \RR $ is continuous with 
+  \[
+  0 \leq  g(t)  \leq  k + L 
+  \int_{t_0}^{t} g(s) ds \quad \quad \forall t \in  [t_0, t_1],
+  \]
+  then, 
+  \[
+  0 \leq g(t)  \leq K e^{L(t-t_0) } \quad \quad 
+  \forall t \in   \left[ t_0, t_1 \right].
+  \]
+  where $K, L > 0 $ 
+\end{corollary}
+\begin{proof}
+  \textsc{
+ Proof of \it Theorem 1.3.4 \normalfont
+  }. \\
+  \ding{50} \textbf{Existence:} For $t \in  \left[ t_0-\al, t+\al \right]$, we have,
+  \[
+  \| \FF _{1}(t)  - \FF _{0}(t)  \|  = 
+  \| \int_{t_0}^{t} f(s, \FF _{0}(s) ) ds \|  \leq 
+  M \left| t-t_0 \right|  \leq  \al M \leq b.
+  \]
+  Hence,  $\| \FF _{1} - \FF _{0} \| _{\infty } \leq  \| \FF _{1} - x_0 \| _{\infty } \leq  b $, and 
+  $
+  \int_{t_0}^{t} f(s) , \FF _{1}(s) ds 
+  $ is defined for all $t \in   I_{\al} $.
+  \begin{align*}
+  \| \FF _{2}(t)  - \FF _{0}(t)  \|  
+  &= 
+  \| \int_{t_0}^{t} f(s, \FF _{1}(s) ) ds \|  \\
+  & \leq M \al \leq  b.
+  \end{align*}
+  Hence $ \| \FF _{2} - \FF _{0} \|_{\infty } \leq b$ and 
+  $\int_{t_0}^{t} f(s, \FF _{2}(s) ) ds $ is defined for all $t \in   I_{\al} $. Therefore, we 
+  see that for all $n \in  \NN_{0}$, we have, 
+  \[
+    \| \FF _{n} - \FF _{0} \|  _{\infty }\leq b,
+  \]
+  and 
+  \[
+  \int_{t_0}^{t} f(s, \FF _{n}(s) ) ds,
+  \]
+  is defined for all $t \in   I_{\al} $. Now, for all $k \geq 1 $ and for all $t \in  I_{\al}$ 
+  \begin{align*}
+    \| \FF _{k+1}(t)  - \FF _{k}(t)  \|  &=
+    \| \int_{t_0}^{t} 
+    f(s, \FF _{k}(s) )  - f(s, \FF _{k-1}(s) ) ds\|  \\
+                                         & \leq  
+                                         \int_{ \min (t_0, t) }^{\max (t_0, t) } \| f(s, \FF _{n}(s) ) 
+                                         - f(s, \FF _{n-1}(s) ) \| ds
+                                         \\
+                                         & \leq 
+                                         L \left| \int_{t_0}^{t} \| \FF _{k}(s)  - \FF _{k-1}(s)  \| ds  \right|.
+  \end{align*}
+  We prove now that,
+  \[
+  \| \FF _{k+1}(t)  - \FF _{k}(t)  \|  \leq  b \cdot 
+  \frac{L^{k}\left| t-t_0 \right|  ^{k}}{k !} = 
+  b \cdot \frac{(L \left| t-t_0 \right|  ) ^{k}}{k!}
+  \quad \quad \forall  t \in   I_{\al}.
+  \]
+  By induction, 
+\end{proof}
+  % end of file
