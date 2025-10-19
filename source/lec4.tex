@@ -1,0 +1,234 @@
+% lec4.tex 
+\lecture{4}{08:04 AM Sun, Oct 19 2025}{} 
+\noindent
+\textcolor{purple}{
+\underline{
+Picard's Method \ding{46}
+}
+}\\
+\[
+  \begin{cases}
+\FF _{0} (t) &= x_0, \\
+\FF _{n+1}(t)  &= x_0 + \int_{t_0}^{t} f(s, \FF_{n}(s)  ) ds.
+  \end{cases}
+\]
+\begin{theorem}[]
+$ f : \RR  \longrightarrow \RR^{k} $ is continuous and $L $-Lipschitzian on $\mathcal{R}$. $\mathcal{R}  = \left\{ (t,x) : \quad \left| t-t_0 \right|   \leq a \text{ and }   \| x-x_0 \| \leq b \right\}.$ We have;
+\[
+\| f(t, x) - f(t, y)  \| \leq  L \| x-y \|.
+\]
+Then, IVP (IVP1) has a unique solution defined on $\left[ t_0 - \al, t_0 + \al \right] $ where, 
+\[
+\al = \begin{cases}
+  a   & \text{ if }  M = 0,\\
+  \min \left( a, \frac{b}{M} \right) &\text{ if }  M \neq 0.
+\end{cases}
+\]
+\end{theorem}
+\begin{proof}
+We have, 
+\[
+\| \FF _{n} - \FF _{0} \|  = \| \FF _{n} - x_0 \|  \leq  b.
+\]
+We get, 
+\begin{align*}
+  \| \FF_{k+1}(t) - \FF_{k}(t)  \|  &=
+  \| \int_{t_0}^{t} f(s, \FF_{k}(s) ) - f(s, \FF_{k-1}(s) ) ds \|  \\
+                                    & \leq 
+                                    L \left| \int_{t_0}^{t} \| \FF_{k}(s) - \FF_{k-1}(s)  \| ds \right|.
+\end{align*}
+Thus,
+\[
+  \| \FF_{k+1}(t) - \FF_{k}(t)  \|  \leq \frac{b}{k!} (L\left| t-t_0 \right|  ) ^{k} \quad 
+  \quad (\forall  t \in   I_{\al}).
+\]
+By induction:
+\begin{align*}
+  \| \FF_2(t)  - \FF_1(t)  \| & \leq L
+  \left| \int_{t}^{t_0} \| \FF_1(s) - \FF_0(s)  \| ds \right|, \\
+                              & \leq  b \left( L \left| t-t_0 \right|   \right) .
+\end{align*}
+If $\| \FF_{k}(t)  - \FF_{k-1}(t)  \| \leq \frac{b}{(k-1) !} (L \left| t-t_0 \right|  ) ^{k-1}$. Therefore, 
+\begin{align*}
+  \| \FF_{k+1}(t)  - \FF_{k}(t)  \| &
+  \leq L \left| \int_{t_0}^{t} \| \FF_{k}(s)  - \FF_{k-1}(s)  \| ds \right| , \\
+                                    & \leq L \left| \int_{t_0}^{t} b \frac{(L \left| s-s_0 \right|  ) ^{k-1}}{(k-1) !}ds \right|,   \\
+                                    & = b \frac{(L \left| t-t_0 \right|  ) ^{k}}{k!}.
+\end{align*}
+Let $N, n \in  \NN $ with $N > n$.  
+\begin{align*}
+  \| \FF_{N}(t)  - \FF_{n}(t)  \| & \leq 
+  \sum_{k=n}^{N-1} \| \FF_{k+1}(t)  - \FF_{k}(t)  \|, \\
+                                  & \leq 
+                                  b \sum_{k=n}^{N-1} 
+                                  \frac{(L \left| t-t_0 \right|  ) ^k }{k!} \leq 
+                                  b \sum_{k=n}^{N-1} 
+                                  \frac{(L \al) ^k }{k!},
+\end{align*}
+then by the remainder of a convergent series, we get
+\[
+\leq b \sum_{k \geq n}^{} \frac{(L \al) ^k }{k!} \rightarrow 0 \quad  \text{ as }   n \rightarrow +\infty .
+\]
+So $(\FF_n )  $ converges uniformally to some function 
+$ \FF : I_{\al}  \longrightarrow \RR ^k  $. Letting $n \rightarrow +\infty  $ in 
+$\FF_{n+1}(t)  = x_0 + \int_{t_0}^{t} f(s, \FF_n (s) ) ds,$ we get 
+\[
+\FF(t) = x_0 + \int_{t_0}^{t} f(s, \FF(s) ) ds.
+\]
+Hence $\FF $ is a solution of IVP(IVP1). \\
+\begin{corollary}[Gronwall's Inequality]
+  Let $ g : [a,b]  \longrightarrow \RR ^{+} $be a continuous function satifying, 
+  \[
+  g(t)  \leq  k + l \int_{a}^{t} g(s)  ds,   \quad \quad 
+  \forall t \in   [a,b];
+  \]
+  where $ k, l \geq  0. $ Then, 
+  \[
+  g(t)  \leq  k e^{l (t-a) }
+  \]
+\end{corollary}
+\noindent\ding{50} \textbf{Uniqueness:} Suppose that $\FF $ and $\Psi  $ are two solutions to (IVP1). 
+Then,
+\begin{align*}
+  \FF(t)  &= x_0 + \int_{t_0}^{t}  f(s, \FF(s) ) ds, \\
+  \Psi (t)  &= x_0 + \int_{t_0}^{t}  f(s, \Psi (s) ) ds, \\ 
+\end{align*}
+for all $t \in   I_{\al} = \left[ t_0 - \al, t_0 + \al \right]. $ For $t \geq t_0 $, 
+\begin{align*}
+  \| \FF(t) - \Psi (t)  \| &= 
+  \| \int_{ t_0}^{t} f(s, \FF(s) ) ds - f(s, \Psi (s) ) ds \|, \\
+                           & \leq 
+                           \underbrace{k}_{= 0 \text{\tiny Gronwall's Inequality.}  } +
+                           L \int_{t_0}^{t} \| \FF(s)  - \Psi (s)  \| ds.
+\end{align*}
+Hence, 
+\[
+\| \FF(t) - \Psi (s)  \| \leq  0 \implies 
+\FF(t)  = \Psi (t)  \quad \forall t \geq t_0.
+\]
+\end{proof}
+\subsection{Peano's Theorem}
+\begin{theorem}[Peano]
+Suppose that $f $ is continuous on $R $, then IVP (IVP1) admits a solution defined 
+on $\left[ t_0 - \al, t_0 + \al \right].$
+\end{theorem}
+\begin{theorem}[Ascoli Arzela]
+Let $\mathcal{M}  $ be a nonempty set in $\mathcal{C} \left( [a,b] , \RR ^k  \right) = E$. Then $\mathcal{M}  $ is
+relatively compact in $E$ $(\overline{\Omega } \text{ is compact })$ if and only if:  
+\begin{itemize}
+  \item[\ding{172}] $\mathcal{M}  $ is uniformaly bounded; i.e. $\exists M > 0$ such that $\| u \|  \leq  M.$ 
+ \item[\ding{173}] $\mathcal{M}  $ is equicontinuous; i.e. $\forall \veps  > 0, \exists \dd  > 0$ such that,
+    \[
+    \left| t_1-t_2 \right|  \leq \dd  \implies 
+    \| u(t_1) - u(t_2)  \| \leq  \veps  \quad \quad 
+    \forall u \in  \mathcal{M}, \quad 
+    \forall t_1, t_2 \in   [a,b] .
+    \]
+\end{itemize}
+\end{theorem}
+\begin{proof}
+  \ding{49}
+\textsc{Proof of Peano's theorem.} \\ $X = \mathcal{C} (I_{\al}, \RR ^k ),I_{\al} = \left[ t_0 -\al, t_0 + \al\right]$, 
+endowed with sup-norm $\| . \| _{+\infty }. $ Define the map,
+\[
+\begin{array}{cccc}
+      T : &  X  & \longrightarrow & X \\
+
+           &  x(t)   & \longmapsto     & Tx(t) = x_0 + \int_{t_0}^{t} f(s, x(s) ) ds. \\ 
+\end{array}
+\]
+Let $\Omega  = \overline{B}(x_0, b),$ Clearly $\Omega  $ is nonempty closed and convex. 
+\begin{itemize}
+  \item[\ding{50}] $T(\Omega ) \subset \Omega  $. Indeed for any $x \in \Omega $, 
+    \begin{align*}
+      \| x-x_0 \| _{\infty } &=
+      \sup_{t \in   I_{\al}} 
+      \| x(t) - x_0 \| \\
+                              & \leq 
+                              \sup_{t \in  I_{\al}} 
+                              \left( \| \int_{t_0}^{t} f(s, x(s) ) ds \|  \right)  \\
+                              & \leq 
+                              \sup_{t \in   I_{\al}} 
+                              \left( \left| t-t_0 \right|  M \right) \\
+                              & \leq  M \al \leq b.
+    \end{align*}
+ \item[\ding{50}] \it $T $ is continuous. \normalfont Let $(x_n ) \subset X $ convering to $\overline{x}$ in $X $. 
+   $f $ being continuous on the compact $\mathcal{R}  $, is uniformally continuous on $\mathcal{R}$. i.e.;
+   \[
+   \forall \veps > 0,  \exists \dd > 0,  \forall (t_1, x_1) , (t_2, x_2) \in  
+   \mathcal{R}: 
+   \| (t_1, x_1) - (t_2, x_2)  \| \leq \dd  \implies 
+   \| f(t_1, x_1) - f(t_2, x_2)  \| \leq  \veps.
+   \]
+   In particular, for all $t \in   I_{\al}, \forall  x_1, x_2 \in   \RR ^k  $. 
+   \[
+   \| x_1 - x_2 \| \leq  \dd  \implies 
+   \| f(t, x_1) - f(t, x_2)  \| \leq  \veps .
+   \]
+   Let $\veps  > 0, \exists  \dd  > 0 $ such that for all $x, y \in  \overline{B}(x_0, b)$, and for all
+   $t \in   I_{\al}. $ We have,
+   \[
+   \| x-y \| \leq  \dd  \implies 
+   \| f(t,x) - f(t, y)  \| \leq  \frac{\veps }{\al}.
+   \]
+ since $x_n  \overset{\text{ in X}  }{ \longrightarrow }\overline{x}, \exists n_0 \in   \NN$ such that,
+   \[
+   \| x_n - x_0 \| _{\infty }\leq  \dd  \quad \quad \forall n \geq n_0.
+   \]
+   Hence, 
+   \begin{align*}
+     \| Tx_n (t) - T \overline{x}(t)  \| &=
+     \| \int_{t_0}^{t} \left( f(s, x_n (s) ) - f(s, \overline{x}(s) )  \right) ds \| \\
+                                         & \leq 
+                                         \left| \int_{t_0}^{t} \| f(s, x_n (s) ) - f(s, \overline{x}(s) )  \| ds \right|  
+                                         \\
+                                         & \leq 
+                                         \left| t-t_0 \right|  \frac{\veps }{\al} \leq  
+                                         \al \frac{\veps }{\al} = \veps ,
+   \end{align*}
+   \[
+   \implies \| Tx_n - T \overline{x} \| _{1} \leq \veps.
+   \]
+ \item[\ding{50}] \it $\overline{T(\Omega ) } $ is compact in $X$ \normalfont. $T(\Omega )  $ is uniformaly bounded
+   since for all $x \in  \Omega, \| Tx - x_0 \| _{\infty } \leq b.$ 
+   \begin{align*}
+     \| Tx \| _{\infty } &\leq 
+     \| Tx - x_0 \|_{\infty } + \| x_0 \|_{\infty },
+     \\
+                         & \leq b + \| x_0 \| _{\infty}.
+   \end{align*}
+\end{itemize}
+For any $x \in  \Omega  $, and for any $t_1, t_2 \in  I_{\al} $. We have;
+\begin{align*}
+  \| Tx(t_1) - Tx(t_2)  \| &= \| \int_{t_0}^{t_1} f(s, x(s) ) ds - \int_{t_0}^{t_2}  f(s, x(s) ) ds \| \\
+&= \| \int_{t_1}^{t_2} f(s, x(s) ) ds \| \\
+& \leq 
+\left| \int_{t_1}^{t_2} f(s, x(s) ) ds \right|  \\
+& \leq M \left| t_1, t_2 \right|.
+\end{align*}
+So $T(\Omega )  $ is equicontinuous and $\overline{T(\Omega ) }  $ is compact in $X $. \\
+\noindent\ding{49} \textbf{Conclusion:} By \textsc{Schauder's Theorem} $T $ has a fixed point 
+$\FF $ which is a solution to (IVP1), 
+\[
+\FF(t)  = x_0 + \int_{t_0}^{t}  f(s, \FF(s) ) ds.
+\]
+\end{proof}
+\section{Extension of solutions}
+The results we have seen deal local existence. Indeed the solution was defined in a neighborhood
+of to and in a neighborhood of the inital data. \textcolor{purple}{The extension of solution (a continuous of solution)
+consists in studying criteria. Which allow to extend the interval of definition of the solution.} 
+Here, we let $ f : U \subset \RR  \times \RR ^k   \longrightarrow \RR ^k  $ continuous, $U$ is open. 
+\begin{corollary}[]
+  Assume that $ \FF : I = [t_1, t_2] \longrightarrow \RR ^{b} $ satisfies $\FF'(t)  =  f(t, \FF(t) )$ 
+  and $(t, \FF(t) ) \in  U $ for all $t \in   I $. If $\exists (\tau _n ) \subset I $ such that; 
+  \begin{align*}
+    \lim_{n \to \infty} \left( \tau _n , \FF(\tau _n )  \right) &=   
+    (t_1, r) \in  U,
+  \end{align*}
+  Then, 
+  \[
+  \lim_{z \to t_1} (z, \FF(z) )  = 
+  (t_1, r) .
+  \]
+\end{corollary}
+% end of file
