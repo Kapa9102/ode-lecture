@@ -213,11 +213,19 @@ $\FF $ which is a solution to (IVP1),
 \FF(t)  = x_0 + \int_{t_0}^{t}  f(s, \FF(s) ) ds.
 \]
 \end{proof}
-\section{Extension of solutions}
+\section{Continuation of solutions (or extension of solutions)}
 The results we have seen deal local existence. Indeed the solution was defined in a neighborhood
-of to and in a neighborhood of the inital data. \textcolor{purple}{The extension of solution (a continuous of solution)
-consists in studying criteria. Which allow to extend the interval of definition of the solution.} 
-Here, we let $ f : U \subset \RR  \times \RR ^k   \longrightarrow \RR ^k  $ continuous, $U$ is open. 
+of to and in a neighborhood of the inital data. The extension of solution (a continuous of solution)
+consists in studying criteria. Which allow to extend the interval of definition of the solution. Consider
+the IVP
+\[
+\begin{cases}
+x' = f(t, x), \\
+x(t_0) = x_0.
+\end{cases}
+\]
+Where $f : U \subset \RR  \times \RR ^{k}  \longrightarrow \RR^k$ is 
+continious, $U$ is a domain in $\RR  \times \RR ^{k} $ and $(t_0, x_0) \in  U$.
 \begin{corollary}[]
   Assume that $ \FF : I = [t_1, t_2] \longrightarrow \RR ^{b} $ satisfies $\FF'(t)  =  f(t, \FF(t) )$ 
   and $(t, \FF(t) ) \in  U $ for all $t \in   I $. If $\exists (\tau _n ) \subset I $ such that; 

@@ -1,0 +1,153 @@
+% lec5.tex 
+\lecture{5}{08:03 AM Sun, Oct 26 2025}{} 
+\begin{definition}[]
+Let $(\FF, I) $ and $( \overset{\sim}{\FF}, \overset{\sim}{I})$  
+be two solutions to the IVP above, we say that $(\overset{\sim}{\FF} , \overset{\sim}{I} ) $ is an extension 
+of $(\FF, I) $ if $I \subset \overset{\sim}{I} $ and 
+$\overset{\sim}{\FF} _{|I}= \emptyset.$ 
+\end{definition}
+\begin{definition}[Maximal solution]
+A function $ \FF : I \longrightarrow \RR ^k  $ is said
+to be a maximal solution to IVP (or the ODE $x' = f(t, x) $). 
+If $\FF$ has no extension.
+\end{definition}
+\begin{definition}[Global solution]
+Suppose that $U = I \times \Omega $ where $I$ is 
+an interval and $\Omega$ is a domain in 
+$\RR ^k.$ Any solution $ \FF : I \longrightarrow \RR ^k  $ such that 
+$\FF'(t) = f(t, \FF(t) )   $  and $(t, \FF(t) ) \in   I \times \RR  $ is said
+to be a global solution to the ODE in IVP.
+\end{definition}
+\begin{corollary}[]
+Suppose that $ \FF : (t_1, t_2)  \longrightarrow \RR ^k  $ satisfies $\FF'(t) = f(t, \FF(t)) $ and $(t, \FF(t) ) 
+\in  U$ for all $t \in  (t_1, t_2)$. If $\lim_{n \to \infty} (z_n , \FF(z_n ) ) = (t_1, \tau ) \in  U$ (resp. $\lim_{n \to \infty} 
+(z_n , \FF(z_n ) ) = (t_2, \tau )  \in   U)$, then $\lim_{z \to t_1} (z, \FF(z) ) = (t_1, \tau ).$ (resp. $\lim_{z \to t_2} 
+(z, \FF(z) ) = (t_2 , \tau ).$ $(z_n ) _{n \in  \NN} \subset (t_1, t_2 ).$ 
+\end{corollary}
+\begin{proof}
+Let $W$ be a neighoborhood of $(t_1, t_2) $ such that $W \subset \overline{W} \subset U$. then 
+$(t, \FF(t) ) \in  W$ for $t \in  (t_1, t_2) \subset (t_1, t_2).$ Indeed, let $M = \sup_{(t, x) \in  W} \| f(t, x)  \| $, for every
+$j \in  \NN$ and any $\veps  > 0$ small consider the 
+\[
+\mathcal{R} (\veps )  = \left\{ (t, x) : \left| t-t_{j} \right| \leq \veps  \text{ and }  \| x-\FF(t_{j})  \| \leq M \veps  \right\}.
+\]
+Then there exists $\veps  > 0$ and $j \in  \NN$ such that 
+\[
+  (t_1, \tau ) \in  \mathcal{R} _{j}(\veps ) \subset W.
+\]
+From above proposition applied to $\FF$ the solution of 
+\[
+  \begin{cases}
+  x' =  f(t,x),\\
+  x(\tau _{j}) = \FF(\tau _{j}).
+  \end{cases}
+\]
+We obtain that $(\tau , \FF(\tau ) ) \subset \mathcal{R} _{j}(\veps ) \subset W$ for $\tau  \in  (t_1, \tau _{j}) $,
+\end{proof}
+\begin{theorem}[]
+  Let $ \FF : I = (a, b)  \longrightarrow \RR ^k  $ satisfying $\FF'(t) = f(t, \FF(t) )  $ and 
+  $(t, \FF(t) ) \in   U$ for all $t \in   I$, If the following conditions are satisfying.
+  \begin{itemize}
+    \item [\ding{172} ] $\FF$ can not be extended to the left of $a$.
+    \item [\ding{173} ] $\lim_{j \to \infty} (z_j, \FF(z_{j}) ) = (a, \tau ) \quad \quad ((z_{j})_{j \in  \NN}\subset I ) $.
+  \end{itemize}
+  Then $(a, \tau ) \in  \partial U.$ 
+\end{theorem}
+\begin{proof}
+If $(a, \tau ) \in  U$, then by above corollary we can extend $\FF$ at left of $a$. Contradiction!
+\end{proof}
+\begin{corollary}[]
+Assume that $ f : (a, b) \times \Omega  \longrightarrow \RR ^k  $ is continuous, where 
+$\Omega$ is a domain in $\RR ^k $ and there exists $ \FF : (a, b)  \longrightarrow \RR ^k  $  such that
+\begin{itemize}
+  \item [\ding{172} ]
+$\FF$ and $\FF'$ are continuous in a subinterval $I \subset (a, b) $
+\item [\ding{173} ]  $\FF'(t)  = f(t, \FF(t) ) \quad \forall  t \in  I$.
+\end{itemize}
+Then, either 
+\begin{itemize}
+  \item [\ding{172} ] 
+    $\FF$ can be extended to all the interval $(a, b) $, or
+  \item [\ding{173} ]  $\lim_{t \to t_0} \| \FF(t)  \| = \infty $ for some $t_0 \in  (a, b) $.
+\end{itemize}
+\end{corollary}
+\begin{example}
+Consider, the ODE: $x' = -2t x^2 $, the solutions are:
+\[
+  - \frac{x'}{x^2 }= 2 t \implies  \frac{1}{x(t)} = t^2  - c
+\]
+Thus 
+\[
+x(t)  = \frac{1}{t^2  - c}\quad c \in  \RR.
+\]
+Define $f(t, x) = - 2 t x^2, \quad D_{f} = \RR \times \RR . $ If $c <  0$, in this case
+$x(t) =  \frac{1}{t^2  - c}$ is a global solution. If $c \geq 0$  then 
+\[
+  \begin{cases}
+    D_{f} &= (- \infty , - \sqrt{c}  )  \\
+    D_{f} &= (- \sqrt{c}   ,  \sqrt{c}  )  \\
+    D_{f} &= (- \sqrt{c}   , +\infty   )  
+  \end{cases}
+\]
+On all the above intervals $x(t) $ is a maximal solution.
+\end{example}
+\begin{definition}[Locally lipschitz]
+$ f : U \longrightarrow \RR ^k  $ is said to be locally lipschitz if its lipscitz on any compact of $U$.
+\end{definition}
+\noindent
+\textcolor{purple}{
+\underline{
+\ding{46}Remark:
+}
+}\\
+If $f$ has continuous partial derivatives with respect to $x_{i}$ where $i = 1, \hdots , j$, then 
+$f$ is locally lipschitz. In particular function that are $\mathcal{C} ^{1}$ are locally lipschitz.
+\begin{theorem}[]
+  Suppose that $ \FF_1, \FF_2 :  \longrightarrow \RR ^k  $ are two solutions of 
+  $x' = f(t, x) $, where $f$ is locally lipschitz on $U$ (with respect to variable $x$). If 
+  $\FF_{1}(t_0)  = \FF_{2}(t_0) $  for some $t_0 \in  I$ then $\FF_{1}(t)  = \FF_{2}(t) $ for all 
+  $t \in   I$.
+\end{theorem}
+\begin{proof}
+  By contradiction, suppose that there is $t_1 \in  I$ such that $\FF_1(t_1)  \neq \FF_2(t_2) $. and without
+  loss of generality suppose suppose that $t_1 > t_0$. By uniqueness, there exists $\bb  > 0$ such that
+  \[
+  \FF_1(t)  = \FF_2(t)  \quad \quad \forall t \in  (t_0 - \bb , t_0 + \bb ).
+  \]
+  Let 
+  \[
+    E = \left\{ t \in  \left[ t_0, t_1 \right]: \quad \FF_1(t)  \neq \FF_2(t)  \right\}
+  \]
+  we have $E \neq \emptyset $ since $t_1 \in  E$. Let $\al = \inf_{} E \in  (t_0, t_1) $  and 
+  for all $t \in  \left[ t_0, \al)$ $\FF_1(t) = \FF_2(t)  $. By continuity, $\FF_1(\al) = \FF_2(\al) $ similarly, 
+    there eixsts a neighborhood $W$ of $\al$ such that 
+    \[
+    \FF_1(t)  = \FF_2(t) \quad \forall t \in   W
+    \]
+    This contradicts the definition of $\al.$ 
+\end{proof}
+\begin{corollary}[Global Uniqueness]
+suppose that f is locally lipschitz with respect to the variable $x$ on $U$. then by any initial data
+$(t_0, x_0) \in   U$, then passes a unique maximal solution. If there is a global solution there its unique.
+\end{corollary}
+\begin{example}
+\[
+u'(t)  + a(t)  u(t) =  f(t)  \quad a,f \in  \mathcal{C} \left( \left[ a, b \right] \right) 
+\]
+$a, b \in  \mathcal{C} (I) $  interval in $\RR $, $f(t, u) =  a(t)  u $  for any $(t_0, u_0) \in  I \times \RR  $ 
+there exists $\left[ a, b \right] \times \left[ c ,d  \right] \subset I \times \RR   $  such that 
+$(t_0, x_0)  \in  \left[ a, b \right] \times \left[ c, d \right] $ . we have
+\[
+\left| f(t, u) -  f(t, v)  \right|   \leq  \sup_{t \in   \left[ a,b \right]} 
+\left| a(t)  \right|   \left| u -v \right|  
+\]
+since the solution has the form 
+\[
+u(t )  = 
+e^{-A(t) } 
+\int_{}^{} 
+e^{A(t) } b(t)  dt ( A' = a) 
+\]
+are defined on $I$, by any $(t_0, u_0 ) \in   I \times \RR  $  passes a unique global solution.
+\end{example}
+% end of file
