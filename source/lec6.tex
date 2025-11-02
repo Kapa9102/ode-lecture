@@ -1,0 +1,187 @@
+% lec6.tex 
+\section{Continuous Dependence on data and parameters}
+\lecture{6}{08:06 AM Sun, Nov 02 2025}{} 
+\begin{theorem}[]
+Let $ f : \RR  \longrightarrow \RR ^k  $ be a continuous and $L-$ Lipschitz function in $x$, 
+where $\mathcal{R} = \left\{ (t, x) : \left| t-t_0 \right|  <  x \text{ and }  \| x-x_0 \| \leq b \right\}$, 
+Let $\FF$ and $\Psi $ be respectively unique solutions to 
+\[
+\begin{cases}
+x' = f(t, x) \\
+x(t_0)  = x_0,
+\end{cases}
+\text{ and }  
+\begin{cases}
+x' = f(t, x)  \\
+x(t_1)  = x_1,
+\end{cases}
+\]
+where $(t_1, x_1) \in  \mathcal{R}.$ Suppose that  $\FF$ and $\Psi $ are well defined
+on an interval $I \subset \left[ t_0 - a, t_0 + a \right]$. Then for all $\veps  > 0$, 
+there exists $\dd  > 0$ such that, 
+\[
+  \left| t_1 - t_0 \right|  <  \dd , 
+  \| x_1 - x_0 \| \leq \dd  \implies 
+  \| \FF(t)  - \Psi (t)  \| \leq \veps 
+\]
+\end{theorem}
+\begin{proof}
+For all $t$ in $I$, we have
+\[
+\FF(t) = x_0 + \int_{t_0}^{t}  f(s, \FF(s) )  ds \text{ and }  
+\Psi (t)  = 
+x_1 + \int_{t_1}^{t} f(s, \Psi (s) ) ds.
+\]
+Hence, we have for all $t \in   I$, 
+\[
+\FF(t)  - \Psi (t)  = 
+(x_0 - x_1)  + 
+\int_{t_1}^{t} f(s, \Psi (s) ) ds + 
+\int_{t_0}^{t} f(s, \FF(s) ) ds,
+\]
+then,
+\[
+\| \FF(t)  - \Psi (t)  \| \leq 
+\| x_0- x_1 \|  + M
+\left| t_1-t_0 \right|  + L 
+\left| \int_{t_1}^{t} \| \FF(s)  - \Psi (s)  \| ds \right|  ,
+\]
+By Gronwall's inequality, we get
+\[
+\| \FF(t)  - \Psi (t)   \| \leq  
+\left( \| x_0-x_1 \|  + M \left| t_1-t_0 \right|  \right) 
+\exp \left( L \left| t-t_1 \right|   \right) .
+\]
+This leads to the claim.
+\end{proof}
+\begin{theorem}[]
+Let $ f,g : \mathcal{R}  \longrightarrow \RR ^k  $ (where $\mathcal{R} $ is the rectangle from the theorem
+above), be two continuous and $k$-Lipschitzian in $x$, let $\FF$ and $\Psi $ be respectively the unique
+solutions to 
+\[
+\begin{cases}
+x' = f(t, x) \\
+x(t_0) = x_0,
+\end{cases} \text{ and }  
+\begin{cases}
+x' = g(t, x)  \\
+x(t_0) = x_1.
+\end{cases}
+\]
+where $(t_0, x_1) \in  \mathcal{R}, $ defined on $I = \left( \al, \bb  \right) $. Suppose that 
+$\| f(t, x) - g(t, x)  \| \leq  \veps $ for all $(t, x) \in  \mathcal{R}$. Then, 
+\[
+\| \FF(t) - \Psi (t)  \| \leq 
+\| x_1-x_0 \| 
+e^{K\left| t-t_0 \right|  } + \veps \left( \bb - \al \right) e^{K \left| t-t_0 \right|  } \quad 
+\forall t \in   I
+\]
+\end{theorem}
+\begin{proof}
+We have, 
+\[
+\FF(t) = x_0 + \int_{t_0}^{t} 
+f(s, \FF(s) ) ds \text{ and }  \Psi (t)  
+=
+ x_1 + \int_{ t_0 }^{t}  g(s, \Psi (s) ) ds.
+\]
+Thus, 
+\begin{align*}
+  \FF(t) - \Psi (t)  &= 
+x_0 - x_1 + \int_{t_0}^{t} 
+\left[ 
+ f(s, \FF(s) ) - g(s, \Psi (s) )   
+\right]ds. \\
+                     &= 
+                     (x_0  - x_1) 
+                     + \int_{t_0}^{t} 
+                     f(s, \FF(s) ) - f(s, \Psi (s) ) ds + 
+                     \int_{t_0 }^{t} f(s, \Psi (s) ) - 
+                     g(s, \Psi (s) ) ds.
+\end{align*}
+By using norms, 
+\[
+\| \FF(t)  - \Psi (t)  \| \leq 
+ \|  x_0 - x_1 \| + 
+ K \left| \int_{t_0}^{t} 
+ \| \FF(s) - \Psi (s)   \| ds \right|   + 
+ \veps \left| t-t_0 \right|  .
+\]
+or, 
+\[
+\| \FF(t) -  \Psi (t)  \| \leq 
+\| x_0-x_1 \| + 
+K \left| \int_{t_0}^{t} 
+\| \FF(s) - \Psi (s)  \| \right|  ds + 
+\veps (\bb  - \al) 
+\]
+By Grownwall's inequality, we obtain,
+\[
+  \| \FF(t)  - \Psi (t)  \| \leq 
+  \left( \| x_0 - x_1 \| + \veps (\bb - \al)  \right) e^{K \left| t-t_0 \right|  }
+\]
+\end{proof}
+\begin{theorem}[]
+  Let $\Omega$ be a domain in $\RR \times \RR ^k  $, and $B_{\mu}= B(\mu_0, c)  = \left\{ \mu \in  \RR^{m}: 
+  \| \mu - \mu_0 \| \leq c\right\}$, and $\Omega_{\mu} = \left\{ (t, x, \mu): 
+  (t, x) \in  \Omega \text{ and }  \mu \in  B(\mu_0, c) \right\}$. Let 
+  $ f : \Omega_{\mu} \longrightarrow \RR ^k  $ be continuous bounded by a constant $M$. Suppose
+  that for $\mu = \mu_0$, the IVP 
+  \[
+  \begin{cases}
+  x' = f(t, x, \mu) \\
+  x(t_0)  = x_0 
+  \end{cases}
+  \quad \quad \text{(IVP *)}  
+  \]
+  has a unique solution defined on $[a,b] .$ Then, $\exists \dd > 0$ such that for any
+  $\mu$ with $\left| \mu - \mu_0\right| < \veps $, every solution $\FF_{\mu}$ to the IVP 
+  (IVP*) is defined on $[a,b] $ and $\FF_{\mu} \rightarrow \FF_{\mu_0}$ uniformally on 
+  $[a,b] $ as $\mu \rightarrow \mu_0$.
+\end{theorem}
+\begin{proof}
+Let $\al > 0$ be small so that $\mathcal{R} = \left\{ (t, x) \in  \RR  \times \RR ^k : 
+\left| t-t_0 \right|  \leq  \al \text{ and }  \|  x- x_0 \| \leq  \mu\right\} \subset \Omega.$ 
+Then all solutions of the IVP. (IVP*) are defined on $\left[ t_0 - \al, t_0  + \al \right].$ 
+This is due to \it Proposition 1.4\normalfont. Let $\FF_{\mu}$ denote a solution. We claim that the set
+$\left\{ \FF_{\mu}: \mu \in   \mathcal{B} _{\mu} \right\}$  is uniformally bounded and equicontinuous on the interval
+$\left[ t_0 - \al, t_0 + \al \right].$ (Use the integral form of the solution). By the contrary, suppose that for some $\overline{t} \in  \left[ t_0 - \al, t_0 + \al \right]$, 
+$\FF_{\mu}(\overline{t})  \quad \cancelto{ }{ \longrightarrow } \quad 
+\FF_{\mu_0}(\overline{t}) $. Then there exists a sequence
+$\left\{ \mu_{k} \right\}$ such that 
+$\mu_{k} \rightarrow \mu_{0}$ and $\FF_{\mu_{k}} \rightarrow 
+\Psi $ uniformally on $\left[ t_0 - \al, t_0 + \al \right]$.
+(Ascoli Arzela). Then $\Psi $ is a solution to 
+\[
+\begin{cases}
+x' = f(t, x, \mu_0) \\
+x(t_0)  = x_0.
+\end{cases}
+\]
+on the interval $\left[ t_0 - \al, t_0 + \al \right]$. In one hand, we have 
+$\Psi (\overline{t}) \neq  \FF_{\mu_0}(\overline{t}) $. In the other, by uniqueness we have 
+$\FF_{\mu_0} = \Psi $ in $\left[ t_0 - \al, t_0 + \al \right]$. Now, we need to prove
+that the uniform convergence occurs in $\left[ a,b \right]$. Let $\tau  \in   \left[ t_0, b)$, and suppose
+that the uniform convergence holds on $\left[ t_0, \tau  - h \right];$ but not on 
+$\left[ t_0, \tau  + h \right]$ for $h > 0$ small, its clear that $\tau  \geq t_0 + \al$. For all $\veps  > 0$,
+there exists $\dd _{\veps }> 0$ such that
+\[
+\| \FF_{\mu}( \tau - \veps ) - \FF_{0}(\tau  - \veps )  \| \leq \veps  \quad 
+\forall \mu , \left| \mu - \mu \right|  \leq \dd _{\veps } \quad \quad (**) 
+\]
+Let $H \subset \Omega$ the region given by 
+\[
+H = \left\{ (t, x) : \left| t- \tau  \right|  \leq  \gamma  \quad 
+\| x-\FF_0(\tau  - \gamma )  \|  \leq  \gamma  + M \left| t_0 - \tau  + \gamma  \right|  \right\}
+\]
+where $\gamma $ is small. Any solution $\Psi $ satisfying by $\FF(\tau  - \gamma ) = \zeta _{0}$ with, 
+\[
+  \left| \zeta _{0} - \FF_{0}( \tau  - \gamma )  \right|   \leq \gamma 
+\]
+will remain in $H$, as $t$ increases. Thus all solutions can be seen extended to $\tau  + \gamma _{0}.$  By choosing
+$\veps  = \gamma $ in $(**) $, it follows that for $\left| \mu - \mu_0 \right|  \leq  \dd _{\veps }$ the solution
+$\FF_{\mu}$ can be extended to $\tau  + \veps$. Thus over $\left[ \tau _{0}, \tau _{0} + \veps  \right]$ 
+these solutions are in $\Omega$ so the argument $\FF_{k} \rightarrow \FF_{0}$ applies to $\left[ \tau _{0}, \tau  + \veps  \right]$,
+this contradicts the definition of $\tau $. the case $\tau  = b$ is treated similarly.
+\end{proof}
+% end of file
